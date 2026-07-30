@@ -1,0 +1,22 @@
+[project]
+name = "vexa"
+version = "0.1.0"
+description = "Vexa — a reusable pytest + Playwright test-automation framework (UI + API) for Catalis QA teams"
+requires-python = "==3.14.*"
+dependencies = [
+    "pytest>=8.0.0",
+    "pytest-playwright>=0.4.0",
+    "playwright>=1.40.0",
+    "python-dotenv>=1.2.1",
+    "pytest-html>=4.2.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "pymupdf>=1.28.0",
+]
+
+
+[dependency-groups]
+dev = [
+    "pytest-html>=4.2.0",
+    "pytest-xdist>=3.8.0",
+]

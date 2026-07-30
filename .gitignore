@@ -1,0 +1,22 @@
+# Secrets — never commit real credentials or captured cookies.
+.env
+
+# Virtual environment
+.venv/
+
+# Test artifacts
+reports/
+logs/
+*.log
+
+# Playwright / evidence scratch
+.playwright-mcp/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
