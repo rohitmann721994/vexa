@@ -8,7 +8,7 @@ and skills.
 Drop it in front of any web app behind an SPA / SSO login and you get UI **and**
 API automation from one browser-login mechanism.
 
-Maintained by Catalis QA.
+**Created and authored by Rohit Mann.** Maintained by Catalis QA.
 
 ---
 
@@ -79,3 +79,10 @@ utils/                    # logger, evidence
 ```
 
 See `CLAUDE.md` for the architecture and the (important) authentication notes.
+
+---
+
+## Author & Credits
+
+**Vexa was created and authored by Rohit Mann** — framework design, architecture,
+and the AI-assistant rules and skills. Maintained by Catalis QA.

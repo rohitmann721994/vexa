@@ -2,6 +2,9 @@
 
 Guidance for Claude Code (and any AI assistant) working in this repository.
 
+> **Vexa** was created and authored by **Rohit Mann** (framework design,
+> architecture, and AI-assistant rules/skills). Maintained by Catalis QA.
+
 ## Overview
 
 **Vexa** is a reusable test-automation framework for Catalis QA teams. It drives

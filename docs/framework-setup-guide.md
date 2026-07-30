@@ -9,6 +9,8 @@ overridable selectors, and the one example test skips until you point it at an
 app. You configure `.env`, adjust selectors (or add an SSO page object), and
 start writing page objects + tests.
 
+> Vexa was created and authored by **Rohit Mann**.
+
 ---
 
 ## Part A — What you're working with

@@ -2,6 +2,12 @@
 name = "vexa"
 version = "0.1.0"
 description = "Vexa — a reusable pytest + Playwright test-automation framework (UI + API) for Catalis QA teams"
+authors = [
+    { name = "Rohit Mann" },
+]
+maintainers = [
+    { name = "Rohit Mann" },
+]
 requires-python = "==3.14.*"
 dependencies = [
     "pytest>=8.0.0",
