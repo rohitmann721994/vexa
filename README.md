@@ -86,3 +86,9 @@ See `CLAUDE.md` for the architecture and the (important) authentication notes.
 
 **Vexa was created and authored by Rohit Mann** — framework design, architecture,
 and the AI-assistant rules and skills. Maintained by Catalis QA.
+
+## License
+
+Copyright (c) 2026 Rohit Mann. All rights reserved. See [LICENSE](LICENSE).
+Ownership and final terms are subject to any applicable employment agreements —
+the current notice is a placeholder pending that confirmation.
