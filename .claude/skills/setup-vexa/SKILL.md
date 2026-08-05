@@ -57,7 +57,14 @@ Do NOT ask for the username's password.
 
 ### 3. Write the config file and run
 
-Write the collected answers to `bootstrap.json` (no password field), then run:
+Write the collected answers to `bootstrap.json` (no password field). Preview
+first with `--dry-run` (writes nothing) and show the user the planned changes:
+
+```bash
+uv run python bootstrap.py --config bootstrap.json --no-password --dry-run
+```
+
+Once they confirm, apply it:
 
 ```bash
 uv run python bootstrap.py --config bootstrap.json --no-password --yes

@@ -60,6 +60,14 @@ Prefer to do it from Claude? Ask it to **"set up vexa for my project"** — the
 `setup-vexa` skill runs the same flow interactively (it configures everything
 except the password, which you add yourself).
 
+Want to see what it'll do first? Add `--dry-run` — it prints every change
+(the `.env` it would write, the rename, the files it would swap, the commands
+it would run) and touches nothing:
+
+```bash
+uv run python bootstrap.py --dry-run
+```
+
 ## Manual quick start
 
 ```bash
