@@ -112,6 +112,8 @@ de-duplicated (first occurrence wins — matters for load-balancer cookies like
 
 Repo-owned, under `.claude/skills/`:
 
+- **`setup-vexa`** — configure a fresh clone to the user's app in one go
+  (drives `bootstrap.py`). Never handles the user's password.
 - **`verify-ticket`** — end-to-end workflow to reproduce/confirm a tracker ticket:
   verify live, capture evidence, back it with a pytest test, post the verdict.
 - **`write-ui-test`** — scaffold a new page object + UI test that follows these

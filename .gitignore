@@ -1,6 +1,9 @@
 # Secrets — never commit real credentials or captured cookies.
 .env
 
+# Bootstrap scratch (answers file the setup-vexa skill writes)
+bootstrap.json
+
 # Virtual environment
 .venv/
 

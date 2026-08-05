@@ -43,7 +43,24 @@ API automation from one browser-login mechanism.
 
 ---
 
-## Quick start
+## Set up for your project (one command)
+
+Clone, then run the bootstrap — it configures the framework to *your* app
+(project name, URL, login selectors, `.env`, dependencies, a starter test) in
+one go:
+
+```bash
+git clone https://github.com/rohitmann721994/vexa my-project
+cd my-project
+uv run python bootstrap.py
+```
+
+The only manual step it leaves you is pasting your test password into `.env`.
+Prefer to do it from Claude? Ask it to **"set up vexa for my project"** — the
+`setup-vexa` skill runs the same flow interactively (it configures everything
+except the password, which you add yourself).
+
+## Manual quick start
 
 ```bash
 # one-time
