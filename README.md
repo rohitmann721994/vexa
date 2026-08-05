@@ -1,5 +1,12 @@
 # Vexa — QA Test Automation Framework
 
+![Python](https://img.shields.io/badge/python-3.14-3776AB?logo=python&logoColor=white)
+![pytest](https://img.shields.io/badge/pytest-8%2B-0A9EDC?logo=pytest&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-1.6x-2EAD33?logo=playwright&logoColor=white)
+![uv](https://img.shields.io/badge/deps-uv-DE5FE9?logo=uv&logoColor=white)
+![UI + API](https://img.shields.io/badge/tests-UI%20%2B%20API-6E56CF)
+![License](https://img.shields.io/badge/license-Proprietary-red)
+
 A reusable Python test-automation framework for Catalis QA teams: `uv` +
 `pytest` + Playwright, with a clean layered design (facades → page objects →
 tests), evidence capture, HTML reporting, and ready-to-use AI-assistant rules
