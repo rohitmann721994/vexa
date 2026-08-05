@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Install Playwright browser (chromium)
+        run: uv run playwright install --with-deps chromium
+
+      - name: Run tests
+        # Example UI/API tests skip cleanly when no app is configured, so a
+        # fresh clone is green. Add repo secrets (UI_BASE_URL, QA_USERNAME,
+        # QA_PASSWORD, ...) as env here to exercise them against a real app.
+        run: uv run pytest -v
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report
+          path: reports/
+          if-no-files-found: ignore

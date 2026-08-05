@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.pylance",
+    "ms-python.debugpy",
+    "ms-playwright.playwright",
+    "tamasfe.even-better-toml"
+  ]
+}

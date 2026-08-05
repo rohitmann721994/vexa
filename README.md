@@ -28,8 +28,10 @@ API automation from one browser-login mechanism.
 - **Evidence built in** — annotated screenshots + a per-test `steps.md` you can
   attach to a tracker ticket as proof.
 - **Timestamped HTML reports** — self-contained, one per run, screenshot-on-failure.
-- **AI-assistant ready** — a `CLAUDE.md` ruleset and two Claude Code skills
-  (`verify-ticket`, `write-ui-test`) ship in the repo.
+- **AI-assistant ready** — a `CLAUDE.md` ruleset and three Claude Code skills
+  (`verify-ticket`, `write-ui-test`, `write-api-test`) ship in the repo; see
+  `docs/recommended-claude-setup.md` for recommended external plugins.
+- **CI included** — a GitHub Actions workflow runs the suite on every push/PR.
 
 ---
 

@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "All Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests", "-v"],
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "UI Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests/ui", "-m", "ui", "-v"],
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "API Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests/api", "-m", "api", "-v"],
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Smoke Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests", "-m", "smoke", "-v"],
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Current Test File",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["${file}", "-v", "-s"],
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONUNBUFFERED": "1" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

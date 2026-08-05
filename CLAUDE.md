@@ -110,7 +110,15 @@ de-duplicated (first occurrence wins — matters for load-balancer cookies like
 
 ## Skills
 
+Repo-owned, under `.claude/skills/`:
+
 - **`verify-ticket`** — end-to-end workflow to reproduce/confirm a tracker ticket:
   verify live, capture evidence, back it with a pytest test, post the verdict.
 - **`write-ui-test`** — scaffold a new page object + UI test that follows these
   conventions.
+- **`write-api-test`** — scaffold an authenticated API test using `ApiLibrary`.
+
+For recommended **external** plugins/MCP servers (Playwright MCP, superpowers,
+pytest-patterns, accessibility-auditor, k6), see
+[docs/recommended-claude-setup.md](docs/recommended-claude-setup.md) — they're
+installed via the plugin manager, not vendored here.

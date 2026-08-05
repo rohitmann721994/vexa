@@ -1,0 +1,35 @@
+{
+  // Windows venv path; on macOS/Linux use ${workspaceFolder}/.venv/bin/python
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.terminal.activateEnvironment": true,
+
+  // Inject variables from the project .env into the integrated terminal
+  "python.envFile": "${workspaceFolder}/.env",
+
+  // Pytest
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+
+  // Editor — mirror pytest.ini's pythonpath so imports resolve in the IDE
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}",
+    "${workspaceFolder}/libraries",
+    "${workspaceFolder}/pages",
+    "${workspaceFolder}/utils"
+  ],
+
+  // Exclude noise from explorer/search
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.pyc": true,
+    ".venv": true
+  },
+  "search.exclude": {
+    "**/__pycache__": true,
+    ".venv": true,
+    "reports": true,
+    "logs": true
+  }
+}

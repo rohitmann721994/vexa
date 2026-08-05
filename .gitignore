@@ -17,6 +17,11 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# IDE
+# IDE — shared .vscode configs (launch/settings/mcp/extensions) ARE committed;
+# ignore only editor-local scratch. .idea stays out.
 .idea/
-.vscode/
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/mcp.json
+!.vscode/extensions.json
