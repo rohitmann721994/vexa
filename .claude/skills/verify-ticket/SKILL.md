@@ -118,6 +118,10 @@ text, and links to related tickets/evidence instead of duplicating screenshots.
 - Attach evidence files to the ticket (a tracker MCP, the tracker's API, or
   `utils/jira_attach.py` if present — reads `JIRA_EMAIL`/`JIRA_API_TOKEN` from
   `.env`).
+- Build the comment from
+  [docs/templates/qa-comment-template.md](../../../docs/templates/qa-comment-template.md)
+  — fill every field from what you actually observed this run; don't leave a
+  placeholder or a guessed value in.
 - Post the comment via the tracker's MCP/API.
 - **Write the comment in a direct, human voice** — no AI-isms, no generic
   transitions ("Additionally", "It's worth noting"), varied sentence length.
@@ -140,4 +144,5 @@ text, and links to related tickets/evidence instead of duplicating screenshots.
 - Plain `step()` instead of `annotated_step` — evidence loses the caption/outline.
 - Running against the wrong environment because you didn't ask.
 - Claiming PASS from an optimistic in-page result instead of reloading server state.
-- AI-flavored tracker prose.
+- AI-flavored tracker prose, or skipping the comment template's fields instead
+  of filling them from what you actually observed.

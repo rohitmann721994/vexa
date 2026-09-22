@@ -28,8 +28,13 @@ API automation from one browser-login mechanism.
 - **Evidence built in** — annotated screenshots + a per-test `steps.md` you can
   attach to a tracker ticket as proof.
 - **Timestamped HTML reports** — self-contained, one per run, screenshot-on-failure.
-- **AI-assistant ready** — a `CLAUDE.md` ruleset and three Claude Code skills
-  (`verify-ticket`, `write-ui-test`, `write-api-test`) ship in the repo; see
+- **Performance testing (k6)** — a `k6/` module (smoke/load/stress/spike/soak)
+  reuses the same authenticated session as the API suite and writes the same
+  self-contained HTML+JSON report style to `reports/`; see
+  `docs/performance-testing-guide.md`.
+- **AI-assistant ready** — a `CLAUDE.md` ruleset and Claude Code skills
+  (`verify-ticket`, `write-ui-test`, `write-api-test`, `write-performance-test`,
+  plus vendored `k6-performance`) ship in the repo; see
   `docs/recommended-claude-setup.md` for recommended external plugins.
 - **CI included** — a GitHub Actions workflow runs the suite on every push/PR.
 
@@ -104,12 +109,15 @@ full walkthrough. In short:
 CLAUDE.md                 # AI-assistant rules (architecture, conventions, gotchas)
 pyproject.toml pytest.ini conftest.py   # toolchain + scaffolding
 .env.example .gitignore
-.claude/skills/           # verify-ticket, write-ui-test
-docs/                     # setup guide + pytest patterns reference
+.claude/skills/           # verify-ticket, write-ui-test, write-api-test,
+                          # write-performance-test, k6-performance
+docs/                     # setup guide + pytest patterns + performance testing guide
+                          # + templates/qa-comment-template.md
 libraries/                # UiLibrary, ApiLibrary (facades)
 pages/ui/                 # LoginPage, HomePage (page objects)
 tests/                    # ui/ + api/ + fixtures
 utils/                    # logger, evidence
+k6/                       # performance testing module (smoke/load/stress/spike/soak)
 ```
 
 See `CLAUDE.md` for the architecture and the (important) authentication notes.

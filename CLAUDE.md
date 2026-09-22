@@ -33,6 +33,8 @@ uv run pytest -m api          # only API tests
 uv run pytest -m smoke        # only smoke tests
 uv run pytest tests/ui/test_example_login.py::test_login_reaches_app  # single test
 uv run pytest -n auto         # parallel (pytest-xdist)
+
+k6 run k6/scripts/smoke-test.js   # performance tests — separate toolchain, see below
 ```
 
 There is no separate build or lint step — this is a test-only repo. Use `uv`,
@@ -108,6 +110,16 @@ de-duplicated (first occurrence wins — matters for load-balancer cookies like
   console logging (INFO) + file logging to `logs/automation.log` (DEBUG).
 - **`reports/` and `logs/` are gitignored** — reports won't show in `git status`.
 
+## Performance testing (k6)
+
+`k6/` is a separate performance-testing module (smoke/load/stress/spike/soak)
+covered in [docs/performance-testing-guide.md](docs/performance-testing-guide.md).
+It's a **different toolchain** — the k6 binary, not `uv`/`pytest` — but reuses
+the same authenticated session `ApiLibrary` captures: k6 has no browser, so it
+replays the `Cookie` header from `API_COOKIES` in `.env` rather than logging
+in itself. Reports follow the same self-contained-HTML convention as the
+pytest suite, written to `reports/` as `k6_<test>_<timestamp>.html`/`.json`.
+
 ## Skills
 
 Repo-owned, under `.claude/skills/`:
@@ -115,12 +127,17 @@ Repo-owned, under `.claude/skills/`:
 - **`setup-vexa`** — configure a fresh clone to the user's app in one go
   (drives `bootstrap.py`). Never handles the user's password.
 - **`verify-ticket`** — end-to-end workflow to reproduce/confirm a tracker ticket:
-  verify live, capture evidence, back it with a pytest test, post the verdict.
+  verify live, capture evidence, back it with a pytest test, post the verdict
+  using [docs/templates/qa-comment-template.md](docs/templates/qa-comment-template.md).
 - **`write-ui-test`** — scaffold a new page object + UI test that follows these
   conventions.
 - **`write-api-test`** — scaffold an authenticated API test using `ApiLibrary`.
+- **`write-performance-test`** — scaffold a k6 script (smoke/load/stress/spike/soak)
+  reusing `ApiLibrary`'s captured cookie and the repo's report convention.
+- **`k6-performance`** — vendored general k6 reference (executors, custom
+  metrics, data-driven tests, best practices) for generic k6 syntax help.
 
 For recommended **external** plugins/MCP servers (Playwright MCP, superpowers,
-pytest-patterns, accessibility-auditor, k6), see
+pytest-patterns, accessibility-auditor), see
 [docs/recommended-claude-setup.md](docs/recommended-claude-setup.md) — they're
 installed via the plugin manager, not vendored here.
