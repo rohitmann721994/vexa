@@ -87,6 +87,30 @@ This comes from every script's `handleSummary` export
 (`k6/utils/report.js:handleSummaryReport`) — don't drop it when writing a
 new script, or the run won't produce the standard report.
 
+### Executive summary report
+
+The per-run HTML/JSON above is a technical report — the one to hand to a
+ticket or leadership is a separate tile-grid summary (load/stress/spike/soak
+side by side, click a tile for the full detail, signed off at the bottom):
+`utils/perf_summary.py` builds it from the JSON files the runs already wrote.
+
+```bash
+cp k6/report_template/narrative.example.json k6/report_template/narrative.json
+# edit narrative.json — verdict headline/sub, findings, recommendations
+
+uv run python utils/perf_summary.py \
+  --load reports/k6_load_<ts>.json --stress reports/k6_stress_<ts>.json \
+  --spike reports/k6_spike_<ts>.json --soak reports/k6_soak_<ts>.json \
+  --narrative k6/report_template/narrative.json
+```
+
+The pill (pass/watch/fail), p95, concurrency, and request counts are computed
+from the JSON; the verdict headline, findings, and recommendations are
+written by whoever ran the test — this script won't fabricate those.
+Signoff defaults to `Rohit Mann` / `Catalis QA`; override with
+`--prepared-by`/`--prepared-by-role` if someone else runs it. Output:
+`reports/perf_summary_<timestamp>.html`.
+
 ## Running
 
 ```bash
