@@ -4,6 +4,10 @@
 # Bootstrap scratch (answers file the setup-vexa skill writes)
 bootstrap.json
 
+# Per-machine version-update preference (Yes/No/remind-later choice) —
+# .vexa-version itself IS committed, this local override is not.
+.vexa-update-pref.json
+
 # Virtual environment
 .venv/
 
