@@ -11,6 +11,10 @@ version lives in [docs/version-sync-prompt.md](docs/version-sync-prompt.md).
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-09-23
+### Changed
+- Add SemVer versioning and automatic update-notification hook ([#2](https://github.com/rohitmann721994/vexa/pull/2))
+
 ## [0.3.0] - 2026-09-23
 ### Added
 - Executive tile-grid "results at a glance" performance summary report

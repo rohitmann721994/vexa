@@ -1,6 +1,6 @@
 [project]
 name = "vexa"
-version = "0.3.0"
+version = "1.0.0"
 description = "Vexa — a reusable pytest + Playwright test-automation framework (UI + API) for Catalis QA teams"
 authors = [
     { name = "Rohit Mann" },
