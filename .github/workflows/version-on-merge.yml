@@ -1,0 +1,93 @@
+name: version-on-merge
+
+# Every PR merged to main is a version bump — see the "Versioning" section
+# in CLAUDE.md. Bump size comes from the PR title/body (conventional-commit
+# style prefix); default is a patch bump so nothing is skipped by accident.
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Determine bump size
+        id: bump
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          title_lower=$(echo "$PR_TITLE" | tr '[:upper:]' '[:lower:]')
+          if echo "$PR_BODY" | grep -qi "BREAKING CHANGE" || echo "$title_lower" | grep -qE '^[a-z]+!:|!\s*$'; then
+            echo "size=major" >> "$GITHUB_OUTPUT"
+          elif echo "$title_lower" | grep -qE '^(feat|add|feature)\b|^add '; then
+            echo "size=minor" >> "$GITHUB_OUTPUT"
+          else
+            echo "size=patch" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bump VERSION and pyproject.toml
+        id: version
+        run: |
+          current=$(cat VERSION)
+          IFS='.' read -r major minor patch <<< "$current"
+          case "${{ steps.bump.outputs.size }}" in
+            major) major=$((major+1)); minor=0; patch=0 ;;
+            minor) minor=$((minor+1)); patch=0 ;;
+            patch) patch=$((patch+1)) ;;
+          esac
+          new="$major.$minor.$patch"
+          echo "$new" > VERSION
+          sed -i "s/^version = \".*\"/version = \"$new\"/" pyproject.toml
+          echo "new_version=$new" >> "$GITHUB_OUTPUT"
+          echo "old_version=$current" >> "$GITHUB_OUTPUT"
+
+      - name: Update CHANGELOG.md
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.new_version }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          today=$(date +%Y-%m-%d)
+          entry="## [$NEW_VERSION] - $today\n### Changed\n- $PR_TITLE ([#$PR_NUMBER]($PR_URL))\n"
+          awk -v entry="$entry" '
+            /^## \[Unreleased\]/ { print; print ""; printf "%s", entry; next }
+            { print }
+          ' CHANGELOG.md > CHANGELOG.md.tmp
+          mv CHANGELOG.md.tmp CHANGELOG.md
+
+      - name: Commit, tag, and push
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.new_version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION pyproject.toml CHANGELOG.md
+          git commit -m "Release v$NEW_VERSION [skip ci]"
+          git tag "v$NEW_VERSION"
+          git push origin main
+          git push origin "v$NEW_VERSION"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEW_VERSION: ${{ steps.version.outputs.new_version }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh release create "v$NEW_VERSION" \
+            --title "v$NEW_VERSION" \
+            --notes "$PR_TITLE
+
+          $PR_URL"

@@ -108,12 +108,16 @@ full walkthrough. In short:
 
 ```
 CLAUDE.md                 # AI-assistant rules (architecture, conventions, gotchas)
+VERSION CHANGELOG.md      # every merged PR bumps VERSION; see CLAUDE.md → Versioning
 pyproject.toml pytest.ini conftest.py   # toolchain + scaffolding
 .env.example .gitignore
 .claude/skills/           # verify-ticket, write-ui-test, write-api-test,
                           # write-performance-test, k6-performance
+.claude/hooks/            # check_vexa_version.py — SessionStart update check
+.claude/settings.json     # registers the SessionStart hook
 docs/                     # setup guide + pytest patterns + performance testing guide
                           # + templates/qa-comment-template.md
+                          # + version-sync-prompt.md (pulling a new version into an existing clone)
 libraries/                # UiLibrary, ApiLibrary (facades)
 pages/ui/                 # LoginPage, HomePage (page objects)
 tests/                    # ui/ + api/ + fixtures

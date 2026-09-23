@@ -123,6 +123,41 @@ pytest suite, written to `reports/` as `k6_<test>_<timestamp>.html`/`.json`.
 "results at a glance" tile-grid report (`reports/perf_summary_<timestamp>.html`),
 signed off as `Rohit Mann` / `Catalis QA` by default.
 
+## Versioning
+
+**Every PR merged to `main` is a version bump** — Vexa follows
+[SemVer](https://semver.org/), tracked in `VERSION` (mirrored into
+`pyproject.toml`'s `version` field) and logged in `CHANGELOG.md`.
+`.github/workflows/version-on-merge.yml` does this automatically on merge —
+you don't bump it by hand in a PR:
+
+- PR title/body has `BREAKING CHANGE` or a title ending `!` → **major**.
+- PR title starts with `feat`/`add`/`feature` → **minor**.
+- Everything else → **patch** (the safe default — nothing skipped by accident).
+
+The workflow bumps `VERSION`/`pyproject.toml`, prepends a `CHANGELOG.md`
+entry, commits straight to `main`, tags `vX.Y.Z`, and cuts a GitHub Release.
+
+For pulling a new version into a project that already bootstrapped from an
+earlier Vexa clone, use the prompt in
+[docs/version-sync-prompt.md](docs/version-sync-prompt.md) — it targets a
+specific release tag rather than a moving branch, and leaves a
+`.vexa-version` marker behind so the next sync knows where it left off.
+
+**Downstream projects get notified automatically.** `.claude/hooks/check_vexa_version.py`
+runs as a `SessionStart` hook (registered in `.claude/settings.json`) in any
+project bootstrapped from Vexa. It compares that project's `.vexa-version`
+against Vexa's latest GitHub release and, if a newer one exists and the user
+hasn't already dismissed it, has Claude ask **Yes (update now) / No (don't
+ask again for this version) / Remind me tomorrow** via `AskUserQuestion`.
+The choice is recorded in `.vexa-update-pref.json` (gitignored, per machine —
+`skip_version` or `remind_after`). It self-excludes inside the Vexa framework
+repo itself (checked via `origin`'s URL), fails silently offline, and never
+blocks session start. This is orthogonal to `bootstrap.py`'s own copy of this
+repo's files — a project only has this hook once it's synced at least once
+via `docs/version-sync-prompt.md` (or was bootstrapped from a Vexa version
+that already ships it).
+
 ## Skills
 
 Repo-owned, under `.claude/skills/`:
