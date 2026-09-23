@@ -119,6 +119,9 @@ the same authenticated session `ApiLibrary` captures: k6 has no browser, so it
 replays the `Cookie` header from `API_COOKIES` in `.env` rather than logging
 in itself. Reports follow the same self-contained-HTML convention as the
 pytest suite, written to `reports/` as `k6_<test>_<timestamp>.html`/`.json`.
+`utils/perf_summary.py` turns those JSON files into a separate executive
+"results at a glance" tile-grid report (`reports/perf_summary_<timestamp>.html`),
+signed off as `Rohit Mann` / `Catalis QA` by default.
 
 ## Skills
 

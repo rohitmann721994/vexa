@@ -1,0 +1,34 @@
+{
+  "title": "Performance Test Report",
+  "eyebrow": "ABC-123 · Performance Testing",
+  "headline": "App Name — Results at a Glance",
+  "prepared_for": "Name & leadership",
+  "prepared_by": "Rohit Mann",
+  "prepared_by_role": "Catalis QA",
+  "environment": "Stage",
+  "test_run_date": "Sep 10, 2026",
+  "verdict_headline": "Fill in the one-line verdict after reviewing the tiles below",
+  "verdict_sub": "One sentence on the overall result — write this after the run, not before.",
+  "secondary_cards": [
+    {
+      "name": "Full flow, driven live",
+      "pill_label": "Works",
+      "pill_status": "good",
+      "items": [
+        "Describe the end-to-end flow you verified manually alongside the load test",
+        "Note any UX/product issues spotted along the way (these aren't performance findings)"
+      ]
+    },
+    {
+      "name": "Recommendation",
+      "items": [
+        "Plain-language takeaway for the reader — what's safe to ship, what needs a follow-up",
+        "Call out anything worth a team conversation before launch"
+      ]
+    }
+  ],
+  "footnotes": [
+    "Test data: describe the accounts/dataset used, and the total request count",
+    "Full technical writeup and raw k6 JSON/HTML reports available on request"
+  ]
+}

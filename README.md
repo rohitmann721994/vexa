@@ -30,8 +30,9 @@ API automation from one browser-login mechanism.
 - **Timestamped HTML reports** — self-contained, one per run, screenshot-on-failure.
 - **Performance testing (k6)** — a `k6/` module (smoke/load/stress/spike/soak)
   reuses the same authenticated session as the API suite and writes the same
-  self-contained HTML+JSON report style to `reports/`; see
-  `docs/performance-testing-guide.md`.
+  self-contained HTML+JSON report style to `reports/`, plus an executive
+  "results at a glance" tile-grid summary report for handing to a ticket or
+  leadership; see `docs/performance-testing-guide.md`.
 - **AI-assistant ready** — a `CLAUDE.md` ruleset and Claude Code skills
   (`verify-ticket`, `write-ui-test`, `write-api-test`, `write-performance-test`,
   plus vendored `k6-performance`) ship in the repo; see
